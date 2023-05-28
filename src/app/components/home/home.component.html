@@ -1,0 +1,33 @@
+<div class="filters">
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <mat-select [(value)]="select" (selectionChange)="onFilterChange()">   
+            <mat-option *ngFor="let field of sortFields" [value]="field.value">{{field.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<div class="games">
+    <div *ngFor="let game of games">
+        <div class="game" #game (mouseenter)="onVideoStart(game)" (mouseleave)="onVideoEnd()" (click)="gotoDetails(game.id)">
+            <div *ngIf="videoUrl.length === 0 || game.id !== mousedGameId; else videoBox" class="game-img-container">
+                <img src="{{game.background_image}}" alt="thumbnail" class="game-thumbnail">
+            </div>
+            <div class="game-description">
+                <p class="game-name">{{game.name}}</p>
+                    <div class="game-platforms">
+                        <div *ngFor="let parent_platform of game.parent_platforms">
+                            <img class="game-platform" src="assets/images/{{parent_platform.platform.slug}}.svg"
+                            alt="slug">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>
+
+<ng-template #videoBox class="game-img-container">
+    <video #video width="100%">
+        <source src="{{videoUrl}}">
+    </video>
+</ng-template>
