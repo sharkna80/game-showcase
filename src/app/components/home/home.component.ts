@@ -1,9 +1,6 @@
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatOptionSelectionChange } from '@angular/material/core';
-import { MatSelectChange } from '@angular/material/select';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject, elementAt, takeUntil, windowWhen } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { Game } from 'src/app/models';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -11,12 +8,6 @@ export type sortType = {
   name: string;
   value: string;
 };
-
-
-interface Food {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-home',
