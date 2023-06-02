@@ -13,6 +13,8 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, HttpHandler } from '@a
 import { HttpService } from './services/http.service';
 import { GameDetailsComponent } from './components/game-details/game-details.component';
 import { FormsModule } from '@angular/forms';
+import { NgxGaugeModule } from "ngx-gauge";
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -27,20 +29,21 @@ import { FormsModule } from '@angular/forms';
     SharedModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    NgxGaugeModule
   ],
   providers: [
     HttpService,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: HttpErrorInterceptor,
-    multi: true
+    multi: true,
   },
   {
     provide: HTTP_INTERCEPTORS,
     useClass: HttpHeaderInterceptor,
     multi: true
-  }],
-  bootstrap: [AppComponent]
+  }, DatePipe],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

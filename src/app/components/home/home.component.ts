@@ -17,7 +17,6 @@ export type sortType = {
 export class HomeComponent implements OnInit, OnDestroy {
 
   sortFields: sortType[] = [
-    { name: 'Name', value: 'name' },
     { name: 'Released', value: '-released' },
     { name: 'Added', value: '-added' },
     { name: 'Created', value: '-created' },
@@ -26,8 +25,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   ];
 
 
-  select: string = this.sortFields[0].value;
-  
+  select: string = '';
+
   games: Game[] = [];
   videoUrl: string = "";
   mousedGameId: string = "";
@@ -46,13 +45,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   fetchData(scrolling?: boolean): void {
 
     this.httpService.getGameList(this.pageNum, this.pageSize, this.select).pipe(takeUntil(this.unsub)).subscribe(res => {
-      
+
       if(!scrolling) {
         this.games = res.results;
       } else{
         this.games.push(...res.results);
       }
-      
+
     });
   }
 
@@ -90,7 +89,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   gotoDetails(gameId: string) {
-    this.router.navigate(['details', gameId]);
+    console.log("id = " + gameId);
+    this.router.navigate(['/details',gameId]);
   }
 
   ngOnDestroy() {
