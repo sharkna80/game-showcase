@@ -5,7 +5,8 @@ export type Game = {
     released: string;
     background_image: string;
     metacritic: number;
-    genre: Genre[];
+    metacritic_url: string;
+    genres: Genre[];
     website: string;
     parent_platforms: ParentPlatform[];
     publishers: Publisher[];
