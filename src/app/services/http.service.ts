@@ -9850,6 +9850,10 @@ export class HttpService {
     return this.httpClient.get(`${env.BASE_URL}/games/${id}/movies`) as Observable<any>;
   }
 
+  getGameScreenshots(id: string): Observable<ApiResponse<Screenshot>> {
+    return this.httpClient.get(`${env.BASE_URL}/games/${id}/screenshots`) as Observable<any>;
+  }
+
   getGameDetails(gameId: string): Observable<Game> {
     return this.httpClient.get(`${env.BASE_URL}/games/${gameId}`) as Observable<Game>;
   }
