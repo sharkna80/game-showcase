@@ -15,6 +15,8 @@ import { GameDetailsComponent } from './components/game-details/game-details.com
 import { FormsModule } from '@angular/forms';
 import { NgxGaugeModule } from "ngx-gauge";
 import {DatePipe} from "@angular/common";
+import {GameTabsComponent} from "./components/game-tabs/game-tabs.component";
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import {DatePipe} from "@angular/common";
     SearchBarComponent,
     HomeComponent,
     GameDetailsComponent,
+    GameTabsComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     MatTabsModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
   ],
   providers: [],
   exports:[ MatButtonModule,
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatIconModule,]
+    MatIconModule,
+    MatTabsModule]
 })
 export class SharedModule { }
