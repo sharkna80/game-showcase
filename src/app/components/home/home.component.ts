@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Game } from 'src/app/models';
 import { HttpService } from 'src/app/services/http.service';
@@ -36,15 +36,21 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   @ViewChild('video') videoElement: ElementRef | undefined;
 
-  constructor(private httpService : HttpService, private elementRef: ElementRef, private cdRef: ChangeDetectorRef, private router: Router) {}
+  constructor(private httpService : HttpService, private elementRef: ElementRef, private cdRef: ChangeDetectorRef, private router: Router, private route: ActivatedRoute) {
+    this.route.paramMap.subscribe(params => {
+      if(params.get('id')) {
+        this.fetchData(false, params.get('id'))
+      }
+    })
+  }
 
   ngOnInit(): void {
     this.fetchData();
   }
 
-  fetchData(scrolling?: boolean): void {
+  fetchData(scrolling?: boolean, search?: string | null | undefined): void {
 
-    this.httpService.getGameList(this.pageNum, this.pageSize, this.select).pipe(takeUntil(this.unsub)).subscribe(res => {
+    this.httpService.getGameList(this.pageNum, this.pageSize, this.select, search).pipe(takeUntil(this.unsub)).subscribe(res => {
 
       if(!scrolling) {
         this.games = res.results;
