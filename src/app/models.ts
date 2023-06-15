@@ -2,6 +2,8 @@ export type Game = {
     id: string;
     name: string;
     description: string;
+    description_raw: string;
+    background_image_additional: string;
     released: string;
     background_image: string;
     metacritic: number;
@@ -11,8 +13,8 @@ export type Game = {
     parent_platforms: ParentPlatform[];
     publishers: Publisher[];
     ratings: Rating[];
-    screenshots: Screenshot[];
-    trailers: Trailer[];
+    screenshots_count: number;
+    movies_count: number;
 }
 
 export interface ApiResponse<T>  {
