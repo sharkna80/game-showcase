@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable,of } from 'rxjs';
 import {environment as env} from 'src/environments/environment';
-import { ApiResponse, Game, Trailer } from '../models';
+import {ApiResponse, Game, Screenshot, Trailer} from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -9825,7 +9825,7 @@ export class HttpService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getGameList(pageNum: number, pageSize: number, order?: string, search?: string): Observable<ApiResponse<Game>> {
+  getGameList(pageNum: number, pageSize: number, order?: string | null | undefined, search?: string | null | undefined): Observable<ApiResponse<Game>> {
     let params = new HttpParams();
 
     params = params.set('page', pageNum);
@@ -9833,6 +9833,7 @@ export class HttpService {
 
     if(search) {
       params = params.set('search', search);
+      params = params.set('search_exact', false);
     }
 
     if(order) {
