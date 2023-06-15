@@ -1,7 +1,7 @@
 <div class="filters">
     <mat-form-field>
         <mat-label>Filter</mat-label>
-        <mat-select [(value)]="select" (selectionChange)="onFilterChange()">   
+        <mat-select [(value)]="select" (selectionChange)="onFilterChange()">
             <mat-option *ngFor="let field of sortFields" [value]="field.value">{{field.name}}</mat-option>
         </mat-select>
     </mat-form-field>
@@ -9,9 +9,12 @@
 
 <div class="games">
     <div *ngFor="let game of games">
-        <div class="game" #game (mouseenter)="onVideoStart(game)" (mouseleave)="onVideoEnd()" (click)="gotoDetails(game.id)">
-            <div *ngIf="videoUrl.length === 0 || game.id !== mousedGameId; else videoBox" class="game-img-container">
+        <div class="game" #game (click)="gotoDetails(game.id)">
+            <div class="game-img-container">
                 <img src="{{game.background_image}}" alt="thumbnail" class="game-thumbnail">
+            </div>
+            <div *ngIf="game.metacritic" class="game-rating" [ngClass]="{'game-rating-good' : game.metacritic > 75, 'game-rating-avg' : game.metacritic > 50 && game.metacritic < 75, 'game-rating-poor': game.metacritic < 50}">
+              {{game.metacritic}}
             </div>
             <div class="game-description">
                 <p class="game-name">{{game.name}}</p>
@@ -23,11 +26,5 @@
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
 </div>
-
-<ng-template #videoBox class="game-img-container">
-    <video #video width="100%">
-        <source src="{{videoUrl}}">
-    </video>
-</ng-template>

@@ -41,9 +41,9 @@
 }
 
 .game {
-    width: 350px;
+    width: 280px;
     margin: 10px;
-    height: 370px;
+    height: 330px;
     overflow: hidden;
     border-radius: 5px;
     background-color: #202020;
@@ -68,21 +68,48 @@
     &-thumbnail {
         position: absolute;
         left: 0;
-        right: 0;
         top: 0;
         margin: 0 auto;
         height: 200px;
+        object-fit: cover;
+        width: 300px;
     }
 
     &-description {
         display: flex;
         flex-direction: column;
-        padding: 20px;
-        justify-content: flex-end;
-        height: 150px;
+        margin: 40px 30px;
+        justify-content: flex-start;
+        height: 80px;
     }
+
+    &-rating {
+      width: fit-content;
+      float: right;
+      margin: 10px;
+      padding: 2px 10px;
+      border-radius: 5px;
+
+      &-good {
+        color: #00bf0d;
+        border: 1px solid #00bf0d;
+      }
+
+      &-avg {
+        color: #e18f02;
+        border: 1px solid #e18f02;
+      }
+
+      &-poor {
+        color: #e2052a;
+        border: 1px solid #e2052a;
+      }
+
+
+    }
+
     &-name {
-        font-weight: bold;
+        font-weight: 500;
         color: #fff;
         font-size: 22px;
     }
