@@ -1,0 +1,44 @@
+<div class="game-tabs" *ngIf="gameData && gameData.game">
+  <mat-tab-group mat-align-tabs="start" backgroundColor="primary">
+    <mat-tab label="About">
+      <div class="game-para-container">
+        <p class="game-para">
+          <span class="game-info-key">Platforms : </span>
+          <span *ngFor="let parent of gameData.game.parent_platforms; let last = last">{{parent.platform.name}}<span *ngIf="!last">, </span></span>
+        </p>
+        <p class="game-para">
+          <span class="game-info-key">Publishers : </span>
+          <span *ngFor="let publisher of gameData.game.publishers; let last = last">{{publisher.name}}<span *ngIf="!last">, </span></span>
+        </p>
+        <p class="game-para">
+          <span class="game-info-key">Website : </span>
+          <a class="game-link" href="{{gameData.game.website}}" target="_blank">{{gameData.game.website}}</a>
+        </p>
+      </div>
+      <div class="game-para">{{gameData.game.description_raw}}</div>
+      <p class="game-votes">
+        <span>
+          <mat-icon class="game-votes-up">thumb_up</mat-icon>
+            <span class="game-votes-count">{{upVote}}</span>
+        </span>
+        <span>
+          <mat-icon class="game-votes-down">thumb_down</mat-icon>
+          <span class="game-votes-count">{{downVote}}</span>
+        </span>
+      </p>
+    </mat-tab>
+    <mat-tab label="Screenshots">
+      <img *ngFor="let img of gameData.screenshots" class="game-screenshots" src="{{img.image}}" alt="screenshot"/>
+    </mat-tab>
+    <mat-tab label="Trailers">
+      <video class="game-trailers" controls *ngIf="gameData.trailers && gameData.trailers.length > 0; else noVideo">
+        <source src="{{gameData.trailers[0].data?.max}}" type="video/mp4">
+        Your browser does not support the video tag
+      </video>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<ng-template #noVideo>
+  <div class="game-trailers-none"> No trailers available.</div>
+</ng-template>
