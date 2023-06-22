@@ -36,7 +36,9 @@
       &-img {
         width: 100%;
         filter: blur(5px);
-        mask-image: linear-gradient(to top,transparent 50%,black);
+        height: 850px;
+        object-fit: cover;
+        -webkit-mask-image: linear-gradient(to top, transparent 50%, black);
       }
     }
 
