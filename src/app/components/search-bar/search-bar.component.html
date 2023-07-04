@@ -1,7 +1,13 @@
 <div class="search-container">
-    <form class="search-form" #form="ngForm" (ngSubmit)="onSubmit(form)" >
-        <span class="search-logo" routerLink="/">NgGameDB</span>
+    <form class="search-form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <div style="display: flex; flex-direction: row">
+        <div style="margin-left: 40px; display: flex; margin-top: 8px">
+          <span class="material-symbols-outlined">joystick</span>
+          <span class="search-logo" routerLink="/">{{title}}</span>
+        </div>
+
         <input class="search-input" name="search" ngModel placeholder="Search 50000+ games"/>
-        <button class="search-button">Search</button>
+        <button matButton class="search-button" color="primary">Search</button>
+      </div>
     </form>
 </div>

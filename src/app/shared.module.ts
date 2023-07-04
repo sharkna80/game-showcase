@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 
 @NgModule({
   declarations: [
@@ -18,16 +19,20 @@ import { FormsModule } from '@angular/forms';
     MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatTabsModule
+    MatIconModule,
+    MatTabsModule,
+    NgxSkeletonLoaderModule
   ],
   providers: [],
   exports:[ MatButtonModule,
     FormsModule,
     MatTabsModule,
+    MatIconModule,
     MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,
     MatIconModule,
-    MatTabsModule]
+    MatTabsModule,
+  NgxSkeletonLoaderModule]
 })
 export class SharedModule { }
