@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   unsub: Subject<any> = new Subject();
 
   @ViewChild('video') videoElement: ElementRef | undefined;
+  isLoading = true;
 
   constructor(private httpService : HttpService, private elementRef: ElementRef, private cdRef: ChangeDetectorRef, private router: Router, private route: ActivatedRoute) {
     this.route.paramMap.subscribe(params => {
@@ -49,15 +50,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   fetchData(scrolling?: boolean, search?: string | null | undefined): void {
+    this.isLoading = true;
 
     this.httpService.getGameList(this.pageNum, this.pageSize, this.select, search).pipe(takeUntil(this.unsub)).subscribe(res => {
-
       if(!scrolling) {
         this.games = res.results;
       } else{
         this.games.push(...res.results);
       }
-
+      this.isLoading = false;
     });
   }
 

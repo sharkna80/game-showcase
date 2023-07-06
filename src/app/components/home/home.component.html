@@ -10,7 +10,7 @@
 <div class="games">
     <div *ngFor="let game of games">
         <div class="game" #game (click)="gotoDetails(game.id)">
-          <div *ngIf="!!game; else skeltemplate">
+          <div *ngIf="!isLoading; else skeleton">
             <div class="game-img-container">
                 <img src="{{game.background_image}}" alt="thumbnail" class="game-thumbnail">
             </div>
@@ -31,6 +31,6 @@
     </div>
 </div>
 
-<ng-template #skeltemplate>
+<ng-template #skeleton>
   <ngx-skeleton-loader appearence="line" count="5" animation="progress-dark" [theme]="{'background-color': 'gray', 'height': '100%', 'width': '100%'}"></ngx-skeleton-loader>
 </ng-template>
